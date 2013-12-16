@@ -6,6 +6,8 @@ execute pathogen#infect()
 "let mapleader = ","
 set clipboard=unnamedplus
 
+set tags=./tags;/
+
 cmap w!! w !sudo tee % >/dev/null
 set encoding=utf-8
 
@@ -21,6 +23,8 @@ set guioptions-=T " remove toolbar
 set backspace=indent,eol,start
 
 set noek " no esckeys
+
+let mapleader=" "
 
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
@@ -38,6 +42,10 @@ inoremap jl <Esc>
 
 vnoremap < <gv
 vnoremap > >gv
+
+""""""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""
 
 syntax on
 filetype plugin indent on
@@ -60,14 +68,19 @@ set complete=.,i,b,u,]
 """"""""""""""""""""""""""""""
 " generic Leader bindings
 """"""""""""""""""""""""""""""
-nmap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
-nmap <Leader>n :bp<CR>
-nmap <Leader>m :bn<CR>
-nmap <silent> <Leader>ev :e ~/.vimrc<CR>
-nmap <silent> <Leader>sv :so ~/.vimrc<CR>
-nmap <silent> <Leader>/ :noh<CR>
-nmap <Leader>d :e <C-r>=getcwd()<CR><CR>
-nmap <Leader>r q:z1<CR>i
+nnoremap <Leader>t :!ctags -R .<CR>
+nnoremap <Leader>b :b#<CR>
+nnoremap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+"nnoremap <silent> <Leader>w :call ToggleWrap()<CR>
+nnoremap <Leader>n :bp<CR>
+nnoremap <Leader>m :bn<CR>
+nnoremap <silent> <Leader>ev :e ~/.vimrc<CR>
+nnoremap <silent> <Leader>sv :so ~/.vimrc<CR>
+nnoremap <silent> <Leader>/ :noh<CR>
+"nnoremap <Leader>d :e <C-r>=getcwd()<CR><CR>
+nnoremap <Leader>d :Ex<CR>
+nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <Leader>r q:z1<CR>i
 
 """"""""""""""""""""""""""""""
 " Appearance
