@@ -27,7 +27,7 @@ let mapleader=" "
 """"""""""""""""""""""""""""""
 " {{{
 cnoremap w!! w !sudo tee % >/dev/null
-inoremap jl <Esc>
+inoremap jk <Esc>
 
 vnoremap < <gv
 vnoremap > >gv
@@ -74,6 +74,7 @@ set complete=.,i,b,u,]
 
 " screen
 vnoremap <Leader>e :ScreenSend<CR>
+nnoremap <Leader>e V:ScreenSend<CR>
 " }}}
 
 """"""""""""""""""""""""""""""
@@ -85,7 +86,7 @@ nnoremap <Leader>b :b#<CR>
 nnoremap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
 nnoremap <Leader>n :bp<CR>
 nnoremap <Leader>m :bn<CR>
-nnoremap <silent> <Leader>ev :e ~/.vimrc<CR>
+nnoremap <silent> <Leader>v :e ~/.vimrc<CR>
 nnoremap <silent> <Leader>/ :noh<CR>
 nnoremap <Leader>d :Ex<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
