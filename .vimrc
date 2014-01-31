@@ -13,12 +13,12 @@ set smartcase
 "set hidden
 
 set undofile
-set undodir=$HOME/.vimundo
+set undodir=~/.vimundo
 
 set wildmenu
 set backspace=indent,eol,start
 
-set noek " no esckeys
+set esckeys
 
 let mapleader=" "
 
@@ -107,7 +107,7 @@ set visualbell
 set number
 set nowrap
 set showcmd
-"set cul
+"set cursorline
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
