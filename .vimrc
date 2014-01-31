@@ -101,7 +101,10 @@ vnoremap <Leader>s <Esc>`.``gvP``P
 set guioptions-=m " remove menu bar
 set guioptions-=T " remove toolbar
 
-set list listchars=tab:\ \ ,trail:·
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+set list listchars=tab:»·,trail:·
 set autoread
 set visualbell
 set number
