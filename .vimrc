@@ -18,7 +18,7 @@ set undodir=~/.vimundo
 set wildmenu
 set backspace=indent,eol,start
 
-set esckeys
+set noesckeys
 
 let mapleader=" "
 
@@ -37,6 +37,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
+nnoremap Q @@
+
 inoremap <C-f> <C-o>l
 inoremap <C-b> <C-o>h
 inoremap <M-o> <C-o>o
@@ -54,7 +56,8 @@ filetype plugin indent on
 
 if has("gui_running")
     set background=dark
-    colorscheme solarized
+    "colorscheme solarized
+    colorscheme mustang
 endif
 " }}}
 
@@ -83,12 +86,11 @@ nnoremap <Leader>e V:ScreenSend<CR>
 " {{{
 nnoremap <Leader>t :!ctags -R .<CR>
 nnoremap <Leader>b :b#<CR>
-nnoremap <Leader>w :setlocal wrap!<CR>:setlocal wrap?<CR>
+nnoremap <Leader>w :w<CR>
 nnoremap <Leader>n :bp<CR>
 nnoremap <Leader>m :bn<CR>
 nnoremap <silent> <Leader>v :e ~/.vimrc<CR>
 nnoremap <silent> <Leader>/ :noh<CR>
-nnoremap <Leader>d :Ex<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
 
 vnoremap <Leader>s <Esc>`.``gvP``P
@@ -100,11 +102,12 @@ vnoremap <Leader>s <Esc>`.``gvP``P
 " {{{
 set guioptions-=m " remove menu bar
 set guioptions-=T " remove toolbar
+set t_Co=256
 
 highlight ColorColumn ctermbg=magenta
 call matchadd('ColorColumn', '\%81v', 100)
 
-set list listchars=tab:»·,trail:·
+set list listchars=tab:»\ ,trail:·
 set autoread
 set visualbell
 set number
@@ -131,5 +134,20 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
+augroup END
+
+augroup filetype_py
+    autocmd!
+    autocmd FileType python inoreabbrev _S __self__
+augroup END
+
+augroup filetype_asm
+    autocmd!
+    autocmd FileType asm setlocal noexpandtab nocindent
+augroup END
+
+augroup filetype_go
+    autocmd!
+    autocmd Filetype go setlocal noexpandtab
 augroup END
 " }}}
