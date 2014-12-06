@@ -13,7 +13,10 @@ set smartcase
 "set hidden
 
 set undofile
-set undodir=~/.vimundo
+set undodir=~/.vim/undo,.
+
+set backupdir=~/.vim/tmp,.
+set directory=~/.vim/tmp,.
 
 set wildmenu
 set backspace=indent,eol,start
@@ -38,13 +41,6 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
 nnoremap Q @@
-
-inoremap <C-f> <C-o>l
-inoremap <C-b> <C-o>h
-inoremap <M-o> <C-o>o
-inoremap <M-O> <C-o>O
-inoremap <M-b> <C-o>b
-inoremap <M-f> <C-o>w
 " }}}
 
 """"""""""""""""""""""""""""""
@@ -53,28 +49,29 @@ inoremap <M-f> <C-o>w
 " {{{
 syntax on
 filetype plugin indent on
+colorscheme zenburn
 
-if has("gui_running")
-    set background=dark
-    "colorscheme solarized
-    colorscheme mustang
-endif
+"if has("gui_running")
+"    set background=dark
+"    "colorscheme solarized
+"    colorscheme mustang
+"endif
 " }}}
 
 """"""""""""""""""""""""""""""
 " Plugin-specific
 """"""""""""""""""""""""""""""
 " {{{
-let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/emacs/site-lisp/slime/start-swank.lisp &'
-let g:slimv_disable_scheme = 1
-
-" Gundo
+"let g:slimv_swank_cmd = '! xterm -e sbcl --load /usr/share/emacs/site-lisp/slime/start-swank.lisp &'
+"let g:slimv_disable_scheme = 1
+"
+"" Gundo
 nnoremap <Leader>u :GundoToggle<CR>
 
-" YouCompleteMe
-":h 'complete'
-set complete=.,i,b,u,]
-
+"" YouCompleteMe
+"":h 'complete'
+"set complete=.,i,b,u,]
+"
 " screen
 vnoremap <Leader>e :ScreenSend<CR>
 nnoremap <Leader>e V:ScreenSend<CR>
@@ -92,6 +89,7 @@ nnoremap <Leader>m :bn<CR>
 nnoremap <silent> <Leader>v :e ~/.vimrc<CR>
 nnoremap <silent> <Leader>/ :noh<CR>
 nnoremap <Leader>cd :cd %:p:h<CR>:pwd<CR>
+nnoremap <silent><C-n> :set relativenumber! relativenumber?<CR>
 
 vnoremap <Leader>s <Esc>`.``gvP``P
 " }}}
@@ -100,12 +98,12 @@ vnoremap <Leader>s <Esc>`.``gvP``P
 " Appearance
 """"""""""""""""""""""""""""""
 " {{{
-set guioptions-=m " remove menu bar
-set guioptions-=T " remove toolbar
+"set guioptions-=m " remove menu bar
+"set guioptions-=T " remove toolbar
 set t_Co=256
 
-highlight ColorColumn ctermbg=magenta
-call matchadd('ColorColumn', '\%81v', 100)
+"highlight ColorColumn ctermbg=magenta
+"call matchadd('ColorColumn', '\%81v', 100)
 
 set list listchars=tab:»\ ,trail:·
 set autoread
@@ -134,11 +132,6 @@ augroup END
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-augroup filetype_py
-    autocmd!
-    autocmd FileType python inoreabbrev _S __self__
 augroup END
 
 augroup filetype_asm
